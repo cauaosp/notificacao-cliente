@@ -1,5 +1,13 @@
 "use client";
 
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from "@/components/ui/table";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -23,7 +31,7 @@ export default function Administrator() {
   }, []);
 
   return (
-    <div className="mx-auto flex flex-col bg-green-400/10 border border-green-400 max-w-[500px] mt-5 p-2">
+    <div className="mx-auto flex flex-col bg-green-400/10 border border-green-400 max-w-[500px] mt-5 p-2 rounded-lg">
       <div
         className="absolute left-5 top-5 border border-red-400 bg-red-400/10 p-2 rounded-lg hover:cursor-pointer hover:bg-red-400/25 text-zinc-800"
         onClick={() => router.push("/")}
@@ -31,28 +39,30 @@ export default function Administrator() {
         Sair
       </div>
       <h1 className="font-bold text-orange-600 mb-5">Painel Administrativo</h1>
-      <table className="border border-zinc-800 text-zinc-800">
-        <thead className="border border-zinc-800">
-          <tr>
-            <th className="border border-zinc-800">Nome</th>
-            <th className="border border-zinc-800">Aceitou os Termos?</th>
-          </tr>
-        </thead>
-        <tbody className="border border-zinc-800">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Usuários</TableHead>
+            <TableHead>Aceitou os Termos?</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {users.length > 0 ? (
             users.map((user) => (
-              <tr key={user.id} className="text-center">
-                <td className="border border-zinc-800">{user.name}</td>
-                <td className="border border-zinc-800">{user.acceptedTerms ? "Sim" : "Não"}</td>
-              </tr>
+              <TableRow key={user.id}>
+                <TableCell className="font-medium">{user.name}</TableCell>
+                <TableCell>{user.acceptedTerms ? "Sim" : "Não"}</TableCell>
+              </TableRow>
             ))
           ) : (
-            <tr>
-              <td colSpan={3}>Nenhum usuário encontrado</td>
-            </tr>
+            <TableRow>
+              <TableCell colSpan={2} className="h-24 text-center">
+                Nenhum usuário encontrado
+              </TableCell>
+            </TableRow>
           )}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 }
