@@ -40,9 +40,9 @@ export const LoginForm = () => {
     const response = await FakeLoginApi(data.user, data.password);
     alert(response);
     if (response.role === "admin") {
-      router.push("/administrator");
+      router.push(`/administrator?userId=${data.user}`);
     } else if (response.role === "client") {
-      router.push("/client");
+      router.push(`/client?userId=${data.user}`);
     } else {
       setError(response.error);
     }
