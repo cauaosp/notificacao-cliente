@@ -1,11 +1,7 @@
 # notificacao-cliente
-Instruções de Entrega do Projeto
-
-**OBS: Para entrar como administrador você deve colocar usuário: admin e senha qwe123**
-
-1. Concepção e Implementação
-
 O sistema deve permitir que o cliente aceite o termo de notificação e o administrador veja o usuário que aceitou o termo
+
+**OBS: Para entrar como administrador você deve colocar usuário: admin e senha: qwe123**
 
 # Instalação e Configuração
 
@@ -29,3 +25,7 @@ O projeto segue uma estrutura modular, utilizando:
 - ShadCN e Tailwind CSS para estilização.
 - LocalStorage para persistência do aceite dos termos.
 - API Routes para armazenamento de aceitações no backend.
+
+# Experiência
+
+Angustiante, criei toda aplicação em cerca de 6h, foi bastante desafiador criar a lógica para salvar no cachê ,mas, também foi muito divertido, foi legal usar as cores que peguei do site: https://souenergy.com.br e foi bom usar o shadcn para renderizar componentes bonitos.
