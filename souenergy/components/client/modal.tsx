@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { saveUser } from "@/lib/hooks/localStorage";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
 export type TermosECondicoesProps = {
@@ -30,9 +31,13 @@ export const TermosECondicoes = ({
   }, [userId, setOpen]);
 
   const handleAccept = async () => {
+    if (!userId) return;
+
     const accepted = localStorage.getItem(`accepted_terms_${userId}`);
     if (!accepted) {
       localStorage.setItem(`accepted_terms_${userId}`, "true");
+
+      saveUser(userId);
 
       await fetch("/api/accept-terms", {
         method: "POST",
@@ -42,7 +47,6 @@ export const TermosECondicoes = ({
 
     setOpen(false);
   };
-
   return (
     <Dialog open={open}>
       <DialogTrigger asChild onClick={() => setOpen(true)}>
